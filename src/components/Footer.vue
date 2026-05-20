@@ -84,7 +84,7 @@ const { withSocial = true } = defineProps<Props>();
             >
           </Clickable>
         </div>
-        <p>© {{ new Date().getFullYear() }} David Heckhoff</p>
+        <p>© {{ new Date().getFullYear() }} Alejandro Montalván</p>
       </div>
     </div>
   </footer>
