@@ -8,7 +8,7 @@ import { shadow } from "./shadow";
 import { desktops } from "./desktops";
 import { mouse } from "./mouse";
 import { messagePopup } from "./message-popup";
-import { penguin } from "./penguin";
+import { elephant } from "./elephant";
 import { music } from "./music";
 
 import type { Object3D } from "three";
@@ -21,11 +21,10 @@ let objects: {
   carpet: Mesh;
   chair: Mesh;
   frame: Mesh;
+  elephant: Mesh;
+  "elephant-trunk": Mesh;
   mouse: Mesh;
   music: Mesh;
-  penguin: Mesh;
-  "penguin-wing-left": Mesh;
-  "penguin-wing-right": Mesh;
   plant: Mesh;
   room: Mesh;
   shelf: Mesh;
@@ -38,8 +37,7 @@ const init = () => {
   desktops.init();
   messagePopup.init();
   if (objects?.mouse) mouse.init(objects.mouse);
-  if (objects?.penguin)
-    penguin.init(objects.penguin, { left: objects["penguin-wing-left"], right: objects["penguin-wing-right"] });
+  if (objects?.elephant) elephant.init(objects.elephant);
 
   if (objects?.music) music.init(objects.music);
 };
@@ -47,28 +45,41 @@ const init = () => {
 const initObjects = () => {
   if (objects) return;
   const resource = resources.items["room-model"];
+  // Use the penguin placeholder from the room model as the character object
+  let elephantObject: any =
+    resource.scene.children.find((child: Object3D) => child.name === "elephant") ??
+    resource.scene.children.find((child: Object3D) => child.name === "penguin");
+  if (!elephantObject) return;
 
-  const penguin = resource.scene.children.find((child: Object3D) => child.name === "penguin");
+  // No external elephant used; penguin stays in place
+
+  const elephantChildren = elephantObject.children || [];
   objects = {
     blackboard: resource.scene.children.find((child: Object3D) => child.name === "blackboard"),
     carpet: resource.scene.children.find((child: Object3D) => child.name === "carpet"),
     chair: resource.scene.children.find((child: Object3D) => child.name === "chair"),
     frame: resource.scene.children.find((child: Object3D) => child.name === "frame"),
+    elephant: elephantObject,
+    "elephant-trunk": elephantChildren.find((child: Object3D) => child.name === "elephant-trunk"),
     mouse: resource.scene.children.find((child: Object3D) => child.name === "mouse"),
     music: resource.scene.children.find((child: Object3D) => child.name === "music"),
     plant: resource.scene.children.find((child: Object3D) => child.name === "plant"),
     room: resource.scene.children.find((child: Object3D) => child.name === "room"),
     shelf: resource.scene.children.find((child: Object3D) => child.name === "shelf"),
-    penguin,
-    "penguin-wing-left": penguin.children.find((child: Object3D) => child.name === "penguin-wing-left"),
-    "penguin-wing-right": penguin.children.find((child: Object3D) => child.name === "penguin-wing-right"),
   };
 
   Object.values(objects).forEach((object) => {
     if (!object) return;
     const mat = getRoomMaterial();
-    object.material = mat;
-    group.add(object);
+    if (object.type === "Group" || object.type === "Scene") {
+      object.traverse((child: any) => {
+        if (child.isMesh) child.material = mat;
+      });
+    } else {
+      (object as any).material = mat;
+    }
+
+    group.add(object as any);
 
     if (object.name === "carpet") {
       object.renderOrder = -10;
@@ -92,7 +103,7 @@ const tick = () => {
     objects.chair.rotation.copy(chairScrollRotation);
   }
 
-  penguin.tick();
+  elephant.tick();
   music.tick();
 };
 
@@ -103,7 +114,7 @@ const destroy = () => {
   //objects = null;
   desktops.destroy();
   mouse.destroy();
-  penguin.destroy();
+  elephant.destroy();
   music.destroy();
 };
 

@@ -107,19 +107,19 @@ const handleTimelineCreated = (timeline: gsap.core.Timeline, delay: number) => {
 };
 
 const SERVICES_EN = [
-  { name: "Three.js & WebGL" },
-  { name: "Node.js & WebSockets" },
-  { name: "React & Vue" },
-  { name: "Kubernetes & Redis" },
-  { name: "Real-time Multiplayer" },
+  { name: "Laravel & PHP Backend" },
+  { name: "REST & API Development" },
+  { name: "Queues, WebSockets, Jobs" },
+  { name: "Real-time Systems" },
+  { name: "Authentication & Permissions" },
 ] as const satisfies { name: string }[];
 
 const SERVICES_DE = [
-  { name: "Three.js & WebGL" },
-  { name: "Node.js & WebSockets" },
-  { name: "React & Vue" },
-  { name: "Kubernetes & Redis" },
-  { name: "Echtzeit-Mehrspieler" },
+  { name: "Laravel & PHP Backend" },
+  { name: "REST & API Development" },
+  { name: "Queues, WebSockets, Jobs" },
+  { name: "Real-time Systems" },
+  { name: "Authentication & Permissions" },
 ] as const satisfies { name: string }[];
 
 const services = computed(() => {

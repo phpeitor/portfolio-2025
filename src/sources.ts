@@ -19,9 +19,9 @@ import roomTexture from "./assets/textures/room.webp";
 import roomShadowTexture from "./assets/textures/room-shadow.webp";
 import hologramPlaneTexture from "./assets/textures/hologram-plane.webp";
 
-type Source = {
+export type Source = {
   name: string;
-  type: "gltfModel" | "texture";
+  type: "gltfModel" | "objModel" | "texture";
   path: string;
 };
 

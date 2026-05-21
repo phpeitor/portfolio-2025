@@ -17,9 +17,9 @@ export default defineConfig({
     host: true,
   },
   resolve: {
-    extensions: [".js", ".jsx", ".ts", ".tsx", ".json", ".ogg", ".wav", ".glsl", ".ktx2"],
+    extensions: [".js", ".jsx", ".ts", ".tsx", ".json", ".ogg", ".wav", ".glsl", ".ktx2", ".obj"],
   },
-  assetsInclude: ["**/*.svg", "**/*.gltf", "**/*.glb", "**/*.png", "**/*.jpg", "**/*.ktx2"],
+  assetsInclude: ["**/*.svg", "**/*.gltf", "**/*.glb", "**/*.png", "**/*.jpg", "**/*.ktx2", "**/*.obj", "**/*.mtl"],
   css: {
     preprocessorOptions: {
       scss: {
