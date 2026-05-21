@@ -113,14 +113,17 @@ const handleTimelineCreated = (timeline: gsap.core.Timeline, delay: number) => {
         <div class="box-details-items">
           <div class="box-details-item">
             <PinIcon class="box-details-icon" />
-            <AppearingText
-              v-if="t('germany')"
-              class="box-details-content-copy"
-              :text="t('germany')"
-              :steps="3"
-              :duration="0.35"
-              @timeline:created="(tl: gsap.core.Timeline) => handleTimelineCreated(tl, 0.1)"
-            />
+            <div class="box-details-item-flag-wrap">
+              <AppearingText
+                v-if="t('germany')"
+                class="box-details-content-copy"
+                :text="t('germany')"
+                :steps="3"
+                :duration="0.35"
+                @timeline:created="(tl: gsap.core.Timeline) => handleTimelineCreated(tl, 0.1)"
+              />
+              <div class="flag-peru"></div>
+            </div>
           </div>
         </div>
       </div>
@@ -208,6 +211,20 @@ const handleTimelineCreated = (timeline: gsap.core.Timeline, delay: number) => {
     flex-direction: row;
     white-space: nowrap;
     height: var(--icon-size-sm);
+    
+    &-flag-wrap {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+  }
+
+  .flag-peru {
+    width: 14px;
+    height: 10px;
+    background: linear-gradient(to right, #cf142b 33.33%, #ffffff 33.33%, #ffffff 66.66%, #cf142b 66.66%);
+    border-radius: 2px;
+    display: inline-block;
   }
 
   &-icon {

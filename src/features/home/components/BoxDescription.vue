@@ -102,7 +102,10 @@ const handleTimelineCreated = (timeline: gsap.core.Timeline, delay: number) => {
           <p class="box-description-details-name">David</p>
           <div class="box-description-details-location">
             <PinIcon class="box-description-details-location-icon" />
-            <p class="box-description-details-location-copy">{{ t("germany") }}</p>
+            <div class="box-description-details-location-text-wrap">
+              <p class="box-description-details-location-copy">{{ t("germany") }}</p>
+              <div class="flag-peru"></div>
+            </div>
           </div>
         </div>
         <div class="box-description-line"></div>
@@ -181,10 +184,24 @@ const handleTimelineCreated = (timeline: gsap.core.Timeline, delay: number) => {
         transform: translateY(-1px);
       }
 
+      &-text-wrap {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
       &-copy {
         font-size: var(--font-size-md);
       }
     }
+  }
+
+  .flag-peru {
+    width: 14px;
+    height: 10px;
+    background: linear-gradient(to right, #cf142b 33.33%, #ffffff 33.33%, #ffffff 66.66%, #cf142b 66.66%);
+    border-radius: 2px;
+    display: inline-block;
   }
 
   &::after,
