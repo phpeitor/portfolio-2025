@@ -1,9 +1,13 @@
 import {
   Box3,
+  CanvasTexture,
   Group,
   LinearFilter,
   LinearSRGBColorSpace,
   Mesh,
+  MeshBasicMaterial,
+  MeshMatcapMaterial,
+  PlaneGeometry,
   ShaderMaterial,
   Vector3,
 } from "three";
@@ -71,11 +75,82 @@ const createElephantModel = () => {
   const elephant = new Group();
   const scene = resource.scene.clone(true);
 
+  // We use a Matcap material to reveal the model's geometry details (wrinkles, contours) 
+  // even without lights in the scene.
+  const matcapTexture = resources.items["matcap-white"];
+  const customMaterial = new MeshMatcapMaterial({ 
+    color: 0x8f7af2, 
+    matcap: matcapTexture 
+  });
+
   scene.traverse((child) => {
     if (!(child as Mesh).isMesh) return;
     (child as Mesh).castShadow = true;
     (child as Mesh).receiveShadow = true;
+    (child as Mesh).material = customMaterial;
   });
+
+  // Create "PHP" texture dynamically
+  const canvas = document.createElement("canvas");
+  canvas.width = 512;
+  canvas.height = 256;
+  const ctx = canvas.getContext("2d")!;
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.font = "900 160px Arial, sans-serif";
+  ctx.fillStyle = "#ffffff";
+  ctx.shadowColor = "rgba(0,0,0,0.5)";
+  ctx.shadowBlur = 10;
+  ctx.shadowOffsetX = 4;
+  ctx.shadowOffsetY = 4;
+  ctx.fillText("PHP", 256, 128);
+
+  const textTexture = new CanvasTexture(canvas);
+  textTexture.colorSpace = LinearSRGBColorSpace;
+  const textMaterial = new MeshBasicMaterial({ 
+    map: textTexture, 
+    transparent: true,
+    alphaTest: 0.05,
+    depthTest: false // Ensures it renders on top of the curved body
+  });
+
+  scene.updateMatrixWorld(true);
+  const box = new Box3().setFromObject(scene);
+  const size = new Vector3();
+  const center = new Vector3();
+  box.getSize(size);
+  box.getCenter(center);
+
+  const isXLong = size.x > size.z;
+  const length = isXLong ? size.x : size.z;
+  const width = isXLong ? size.z : size.x;
+  
+  const textGeom = new PlaneGeometry(length * 0.35, length * 0.15);
+  const textMesh1 = new Mesh(textGeom, textMaterial);
+  const textMesh2 = new Mesh(textGeom, textMaterial);
+
+  // Put text on both flanks so it's visible regardless of side, centered on the model's actual center
+  const yPos = center.y + size.y * 0.05; // slightly above vertical center
+  if (isXLong) {
+    textMesh1.position.set(center.x, yPos, center.z + width * 0.5 + 0.05);
+    textMesh1.rotation.y = 0;
+    
+    textMesh2.position.set(center.x, yPos, center.z - width * 0.5 - 0.05);
+    textMesh2.rotation.y = Math.PI;
+  } else {
+    textMesh1.position.set(center.x + width * 0.5 + 0.05, yPos, center.z);
+    textMesh1.rotation.y = Math.PI / 2;
+    
+    textMesh2.position.set(center.x - width * 0.5 - 0.05, yPos, center.z);
+    textMesh2.rotation.y = -Math.PI / 2;
+  }
+  
+  // High renderOrder so it draws after the body if depthTest is false
+  textMesh1.renderOrder = 10;
+  textMesh2.renderOrder = 10;
+
+  scene.add(textMesh1);
+  scene.add(textMesh2);
 
   elephant.add(scene);
   normalizeModel(scene);
@@ -99,7 +174,8 @@ const fitModelToPlaceholder = () => {
 
   const targetBox = new Box3().setFromObject(mesh);
 
-  model.rotation.set(0, Math.PI * 0.35, 0);
+  // Looking forward-left (isometric "al frente")
+  model.rotation.set(0, Math.PI * 1.1, 0);
   model.scale.setScalar(1);
   model.updateMatrixWorld(true);
 
@@ -120,8 +196,10 @@ const fitModelToPlaceholder = () => {
   model.position.x += targetCenter.x - modelCenter.x;
   model.position.y += targetBox.min.y - fittedBox.min.y;
   model.position.z += targetCenter.z - modelCenter.z;
-  model.position.x -= targetSize.x * 0.05;
-  model.position.z += targetSize.z * 0.05;
+  
+  // Bring it more forward and to the left (closer to the user edge of the desk)
+  model.position.x -= 0.15;
+  model.position.z += 0.25;
 };
 
 const initHeart = () => {

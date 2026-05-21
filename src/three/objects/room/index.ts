@@ -45,13 +45,12 @@ const init = () => {
 const initObjects = () => {
   if (objects) return;
   const resource = resources.items["room-model"];
-  // Use the penguin placeholder from the room model as the character object
+  
   let elephantObject: any =
     resource.scene.children.find((child: Object3D) => child.name === "elephant") ??
     resource.scene.children.find((child: Object3D) => child.name === "penguin");
-  if (!elephantObject) return;
 
-  // No external elephant used; penguin stays in place
+  if (!elephantObject) return;
 
   const elephantChildren = elephantObject.children || [];
   objects = {
@@ -71,6 +70,7 @@ const initObjects = () => {
   Object.values(objects).forEach((object) => {
     if (!object) return;
     const mat = getRoomMaterial();
+    
     if (object.type === "Group" || object.type === "Scene") {
       object.traverse((child: any) => {
         if (child.isMesh) child.material = mat;
