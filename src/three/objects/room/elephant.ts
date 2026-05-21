@@ -28,6 +28,7 @@ let model: Group | null = null;
 let box3: ClickableBox3 | null = null;
 let heart: Mesh | null = null;
 let heartMaterial: ShaderMaterial | null = null;
+let elephantShader: any = null;
 let isJumping = false;
 let initialized = false;
 const targetSize = new Vector3();
@@ -82,6 +83,37 @@ const createElephantModel = () => {
     color: 0x8f7af2, 
     matcap: matcapTexture 
   });
+
+  customMaterial.onBeforeCompile = (shader) => {
+    shader.uniforms.uBend = { value: 0 };
+    elephantShader = shader;
+
+    shader.vertexShader = shader.vertexShader.replace(
+      '#include <common>',
+      `#include <common>
+      uniform float uBend;`
+    );
+    shader.vertexShader = shader.vertexShader.replace(
+      '#include <begin_vertex>',
+      `#include <begin_vertex>
+      // Apply a smooth bend using a curved mathematical function.
+      // - mask restricts the bend mainly to the front (where the trunk is) and higher up.
+      // - The bend affects the Y (up) and Z (backwards) axes more prominently for the trunk.
+      float distXZ = length(position.xz);
+      
+      // Calculate a localized mask specifically for the "front" (trunk/face area):
+      // X < -0.3 is roughly where the trunk starts out front.
+      float trunkMask = smoothstep(-0.2, -0.6, position.x) * smoothstep(0.4, 1.8, position.y);
+      
+      // Lift the trunk up (Y axis) and curl it back towards the head (X axis)
+      transformed.y += uBend * trunkMask * 1.5;
+      transformed.x += uBend * trunkMask * 0.8; 
+      
+      // A tiny bit of side-shake or ear wiggle from the general mask
+      float headMask = smoothstep(0.5, 1.5, position.y);
+      transformed.z += sin(position.y * 10.0 + uBend * 5.0) * (uBend * 0.1) * headMask;`
+    );
+  };
 
   scene.traverse((child) => {
     if (!(child as Mesh).isMesh) return;
@@ -146,8 +178,17 @@ const createElephantModel = () => {
   }
   
   // High renderOrder so it draws after the body if depthTest is false
-  textMesh1.renderOrder = 10;
   textMesh2.renderOrder = 10;
+
+  // Efecto de pálpito (respiración) continuo en los textos para invitar a la interacción
+  gsap.to([textMesh1.scale, textMesh2.scale], {
+    x: 1.15,
+    y: 1.15,
+    duration: 1.2,
+    ease: "sine.inOut",
+    yoyo: true,
+    repeat: -1,
+  });
 
   scene.add(textMesh1);
   scene.add(textMesh2);
@@ -268,19 +309,33 @@ const handleClick = () => {
     0,
   );
 
-  // Simulate trunk movement by nodding the whole model rapidly like a wag
+  // Simulate trunk movement and trumpeting (barritar)
   tl.to(
     target.rotation,
     {
-      z: target.rotation.z + 0.15,
-      x: target.rotation.x + 0.1,
-      duration: 0.1,
-      ease: "sine.inOut",
+      x: target.rotation.x - 0.2, // Rears up slightly
+      duration: 0.3,
+      ease: "power2.out",
       yoyo: true,
-      repeat: 7,
+      repeat: 1,
     },
     0,
   );
+
+  // Shader animation to bend the trunk up like a trumpet!
+  if (elephantShader) {
+    tl.to(
+      elephantShader.uniforms.uBend,
+      {
+        value: 1.0, // Flex intensity
+        duration: 0.3,
+        ease: "power2.out",
+        yoyo: true,
+        repeat: 1,
+      },
+      0
+    );
+  }
 
   if (heart && heartMaterial && heartMaterial.uniforms.uProgress) {
     tl.set(heartMaterial.uniforms.uProgress, { value: 0 }, 0);
@@ -321,6 +376,7 @@ const destroy = () => {
   model = null;
   heart = null;
   heartMaterial = null;
+  elephantShader = null;
   box3 = null;
   mesh = null;
 };
