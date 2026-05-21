@@ -115,9 +115,9 @@ const handleTimelineCreated = (timeline: gsap.core.Timeline, delay: number) => {
             <PinIcon class="box-details-icon" />
             <div class="box-details-item-flag-wrap">
               <AppearingText
-                v-if="t('germany')"
+                v-if="t('peru')"
                 class="box-details-content-copy"
-                :text="t('germany')"
+                :text="t('peru')"
                 :steps="3"
                 :duration="0.35"
                 @timeline:created="(tl: gsap.core.Timeline) => handleTimelineCreated(tl, 0.1)"

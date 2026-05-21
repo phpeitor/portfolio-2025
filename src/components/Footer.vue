@@ -75,16 +75,22 @@ const { withSocial = true } = defineProps<Props>();
           </p>
           <Clickable renderAs="div">
             <Link
-              href="https://soundcloud.com/hmsurf"
+              href="https://www.instagram.com/amvsoft.tech"
               class="footer-link children-unclickable"
               external
               data-cursor="circle-white"
               data-hoversound="hover"
-              >HM Surf</Link
+              >amvsoft.tech</Link
             >
           </Clickable>
         </div>
-        <p>© {{ new Date().getFullYear() }} Alejandro Montalván</p>
+        <p>© {{ new Date().getFullYear() }} <Link
+              href="https://github.com/phpeitor"
+              class="footer-link children-unclickable"
+              external
+              data-cursor="circle-white"
+              data-hoversound="hover"
+              >PHPeitor</Link> </p>
       </div>
     </div>
   </footer>

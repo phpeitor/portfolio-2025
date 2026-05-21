@@ -4,7 +4,7 @@ import { locale } from "../i18n/store";
 import { changeLocale } from "../i18n/utils/locale";
 
 const handleLangSwitch = () => {
-  changeLocale(locale.value === "es" ? "en" : "es");
+  changeLocale(locale.value === "de" ? "en" : "de");
 };
 </script>
 
@@ -16,6 +16,6 @@ const handleLangSwitch = () => {
     data-cursor="circle-white"
     data-sound="click"
     data-hoversound="hover"
-    >{{ locale === "es" ? "EN" : "ES" }}</Button
+    >{{ locale === "de" ? "EN" : "ES" }}</Button
   >
 </template>
