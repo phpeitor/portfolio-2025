@@ -1,6 +1,7 @@
 import { FontLoader } from "three/examples/jsm/loaders/FontLoader.js";
 import { SRGBColorSpace, TextureLoader } from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
+import { MeshoptDecoder } from "three/examples/jsm/libs/meshopt_decoder.module.js";
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader.js";
 import { MTLLoader } from "three/examples/jsm/loaders/MTLLoader.js";
 import EventEmitter from "./EventEmitter";
@@ -35,8 +36,11 @@ class Resources extends EventEmitter<{
   constructor() {
     super();
 
+    const gltfLoader = new GLTFLoader();
+    gltfLoader.setMeshoptDecoder(MeshoptDecoder);
+
     this.loaders = {
-      gltfLoader: new GLTFLoader(),
+      gltfLoader,
       textureLoader: new TextureLoader(),
       fontLoader: new FontLoader(),
       objLoader: new OBJLoader(),
