@@ -125,12 +125,12 @@ const createElephantModel = () => {
   const length = isXLong ? size.x : size.z;
   const width = isXLong ? size.z : size.x;
   
-  const textGeom = new PlaneGeometry(length * 0.35, length * 0.15);
+  const textGeom = new PlaneGeometry(length * 0.55, length * 0.25);
   const textMesh1 = new Mesh(textGeom, textMaterial);
   const textMesh2 = new Mesh(textGeom, textMaterial);
 
-  // Put text on both flanks so it's visible regardless of side, centered on the model's actual center
-  const yPos = center.y + size.y * 0.05; // slightly above vertical center
+  // Put text on both flanks so it's visible regardless of side, repositioned to the upper back (lomo)
+  const yPos = center.y + size.y * 0.25; // moved up from 0.05 to 0.25 to sit high on the belly/lower back
   if (isXLong) {
     textMesh1.position.set(center.x, yPos, center.z + width * 0.5 + 0.05);
     textMesh1.rotation.y = 0;
@@ -174,8 +174,8 @@ const fitModelToPlaceholder = () => {
 
   const targetBox = new Box3().setFromObject(mesh);
 
-  // Looking forward-left (isometric "al frente")
-  model.rotation.set(0, Math.PI * 1.1, 0);
+  // Perfil inclinado para que se vea el lomo y el texto PHP
+  model.rotation.set(0, Math.PI * 0.6, 0);
   model.scale.setScalar(1);
   model.updateMatrixWorld(true);
 
@@ -197,9 +197,9 @@ const fitModelToPlaceholder = () => {
   model.position.y += targetBox.min.y - fittedBox.min.y;
   model.position.z += targetCenter.z - modelCenter.z;
   
-  // Bring it more forward and to the left (closer to the user edge of the desk)
-  model.position.x -= 0.15;
-  model.position.z += 0.25;
+  // Bring it forward and slightly left so it doesn't clip into the pencil holder
+  model.position.x -= 0.25;
+  model.position.z += 0.20;
 };
 
 const initHeart = () => {
@@ -259,11 +259,25 @@ const handleClick = () => {
   tl.to(
     target.scale,
     {
-      y: target.scale.y * 1.08,
+      y: target.scale.y * 1.05,
       duration: 0.2,
       ease: "power2.out",
       yoyo: true,
       repeat: 1,
+    },
+    0,
+  );
+
+  // Simulate trunk movement by nodding the whole model rapidly like a wag
+  tl.to(
+    target.rotation,
+    {
+      z: target.rotation.z + 0.15,
+      x: target.rotation.x + 0.1,
+      duration: 0.1,
+      ease: "sine.inOut",
+      yoyo: true,
+      repeat: 7,
     },
     0,
   );
