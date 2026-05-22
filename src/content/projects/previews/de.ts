@@ -1,9 +1,9 @@
-import thumbnailCubeWar from "../../../assets/thumbnails/cubewar.jpg";
-import thumbnailQuibbo from "../../../assets/thumbnails/quibbo.jpg";
+import thumbnailCubeWar from "../../../assets/thumbnails/xintra.jpg";
+import thumbnailQuibbo from "../../../assets/thumbnails/elephpant.jpg";
 //import thumbnailParticles from "../../../assets/thumbnails/particles.webp";
-import thumbnailPokedex from "../../../assets/thumbnails/pokedex.jpg";
-import thumbnailSharkie from "../../../assets/thumbnails/sharkie.jpg";
-import thumbnailStreakon from "../../../assets/thumbnails/streakon.jpg";
+import thumbnailPokedex from "../../../assets/thumbnails/kindervianney.jpg";
+import thumbnailSharkie from "../../../assets/thumbnails/motherday.jpg";
+import thumbnailStreakon from "../../../assets/thumbnails/cotix360.jpg";
 
 import type { ProjectPreview } from "../../types";
 

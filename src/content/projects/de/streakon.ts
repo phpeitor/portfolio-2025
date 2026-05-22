@@ -1,7 +1,7 @@
-import streakon0 from "../../../assets/images/projects/streakon/streakon-0.jpg";
-import streakon1 from "../../../assets/images/projects/streakon/streakon-1.jpg";
-import streakon2 from "../../../assets/images/projects/streakon/streakon-2.jpg";
-import streakon3 from "../../../assets/images/projects/streakon/streakon-3.jpg";
+import streakon0 from "../../../assets/images/projects/cotix360/cotix360-0.jpg";
+import streakon1 from "../../../assets/images/projects/cotix360/cotix360-1.jpg";
+import streakon2 from "../../../assets/images/projects/cotix360/cotix360-2.jpg";
+import streakon3 from "../../../assets/images/projects/cotix360/cotix360-3.jpg";
 
 import type { ProjectContent } from "../../types";
 

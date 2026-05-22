@@ -44,7 +44,7 @@ const { withSocial = true } = defineProps<Props>();
           <div class="footer-top-links-legal">
             <Clickable renderAs="div">
               <Link
-                :href="locale === 'de' ? '/de/privacy' : '/privacy'"
+                :href="locale === 'de' ? '/de/privacy.html' : '/privacy.html'"
                 class="footer-link"
                 :external="true"
                 data-cursor="circle-white"
@@ -55,7 +55,7 @@ const { withSocial = true } = defineProps<Props>();
             </Clickable>
             <Clickable renderAs="div">
               <Link
-                :href="locale === 'de' ? '/de/legal' : '/legal'"
+                :href="locale === 'de' ? '/de/legal.html' : '/legal.html'"
                 class="footer-link children-unclickable"
                 :external="true"
                 data-cursor="circle-white"

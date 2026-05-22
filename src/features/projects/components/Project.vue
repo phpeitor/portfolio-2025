@@ -3,6 +3,7 @@ import { projectId, projectVisible, recentProjectId } from "../../../composables
 import { isTransitioning } from "../../../composables/useProjectTransition";
 import { ref, watch } from "vue";
 import { projectModules } from "../../../content/projects";
+import { projectSlugToId } from "../../../content/projects";
 import ProjectContent from "./ProjectContent.vue";
 import Footer from "../../../components/Footer.vue";
 import { locale } from "../../../i18n/store";
@@ -16,7 +17,8 @@ const error = ref<Error | null>(null);
 
 const fetchProject = async (project: string | undefined) => {
   try {
-    const module = await projectModules[locale.value as Locale][project as string].default;
+    const projectId = project ? projectSlugToId[project as keyof typeof projectSlugToId] ?? project : undefined;
+    const module = await projectModules[locale.value as Locale][projectId as string].default;
     content.value = module;
     loading.value = false;
   } catch (err) {

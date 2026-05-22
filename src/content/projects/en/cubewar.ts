@@ -1,10 +1,10 @@
 import videoCubeWar from "../../../assets/videos/cubewar.mp4";
 
-import cubewar0 from "../../../assets/images/projects/cubewar/cubewar-0.jpg";
-import cubewar1 from "../../../assets/images/projects/cubewar/cubewar-1.jpg";
-import cubewar2 from "../../../assets/images/projects/cubewar/cubewar-2.jpg";
-import cubewar3 from "../../../assets/images/projects/cubewar/cubewar-3.jpg";
-import cubewar4 from "../../../assets/images/projects/cubewar/cubewar-4.jpg";
+import cubewar0 from "../../../assets/images/projects/xintra/xintra-0.jpg";
+import cubewar1 from "../../../assets/images/projects/xintra/xintra-1.jpg";
+import cubewar2 from "../../../assets/images/projects/xintra/xintra-2.jpg";
+import cubewar3 from "../../../assets/images/projects/xintra/xintra-3.jpg";
+import cubewar4 from "../../../assets/images/projects/xintra/xintra-4.jpg";
 
 import type { ProjectContent } from "../../types";
 

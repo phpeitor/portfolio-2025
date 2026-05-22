@@ -1,8 +1,8 @@
 import videoPokedex from "../../../assets/videos/pokedex.mp4";
 
-import pokedex0 from "../../../assets/images/projects/pokedex/pokedex-0.jpg";
-import pokedex1 from "../../../assets/images/projects/pokedex/pokedex-1.jpg";
-import pokedex2 from "../../../assets/images/projects/pokedex/pokedex-2.jpg";
+import pokedex0 from "../../../assets/images/projects/kindervianney/kindervianney-0.jpg";
+import pokedex1 from "../../../assets/images/projects/kindervianney/kindervianney-1.jpg";
+import pokedex2 from "../../../assets/images/projects/kindervianney/kindervianney-2.jpg";
 
 import type { ProjectContent } from "../../types";
 

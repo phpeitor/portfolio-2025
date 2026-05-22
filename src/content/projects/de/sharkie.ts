@@ -1,7 +1,7 @@
 import videoSharkie from "../../../assets/videos/sharkie.mp4";
 
-import sharkie0 from "../../../assets/images/projects/sharkie/sharkie-0.jpg";
-import sharkie1 from "../../../assets/images/projects/sharkie/sharkie-1.jpg";
+import sharkie0 from "../../../assets/images/projects/motherday/motherday-0.jpg";
+import sharkie1 from "../../../assets/images/projects/motherday/motherday-1.jpg";
 
 import type { ProjectContent } from "../../types";
 

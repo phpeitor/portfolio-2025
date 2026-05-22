@@ -1,9 +1,9 @@
 import videoQuibbo from "../../../assets/videos/quibbo.mp4";
 
-import quibbo0 from "../../../assets/images/projects/quibbo/quibbo-0.jpg";
-import quibbo1 from "../../../assets/images/projects/quibbo/quibbo-1.jpg";
-import quibbo2 from "../../../assets/images/projects/quibbo/quibbo-2.jpg";
-import quibbo3 from "../../../assets/images/projects/quibbo/quibbo-3.jpg";
+import quibbo0 from "../../../assets/images/projects/elephpant/elephpant-0.jpg";
+import quibbo1 from "../../../assets/images/projects/elephpant/elephpant-1.jpg";
+import quibbo2 from "../../../assets/images/projects/elephpant/elephpant-2.jpg";
+import quibbo3 from "../../../assets/images/projects/elephpant/elephpant-3.jpg";
 
 import type { ProjectContent } from "../../types";
 

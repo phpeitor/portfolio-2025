@@ -1,5 +1,5 @@
 export const social = [
-  { url: "mailto:me@david-hckh.com", name: "mail" },
+  { url: "mailto:alex1991usat@gmail.com", name: "mail" },
   { url: "https://github.com/phpeitor", name: "github" },
   { url: "https://www.linkedin.com/in/drphp", name: "linkedin" },
   { url: "https://x.com/amvsoftech", name: "x" },
