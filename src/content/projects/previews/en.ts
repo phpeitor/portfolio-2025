@@ -1,36 +1,36 @@
-import thumbnailCubeWar from "../../../assets/thumbnails/cubewar.webp";
-import thumbnailQuibbo from "../../../assets/thumbnails/quibbo.webp";
+import thumbnailCubeWar from "../../../assets/thumbnails/cubewar.jpg";
+import thumbnailQuibbo from "../../../assets/thumbnails/quibbo.jpg";
 //import thumbnailParticles from "../../../assets/thumbnails/particles.webp";
-import thumbnailPokedex from "../../../assets/thumbnails/pokedex.webp";
-import thumbnailSharkie from "../../../assets/thumbnails/sharkie.webp";
-import thumbnailStreakon from "../../../assets/thumbnails/streakon.webp";
+import thumbnailPokedex from "../../../assets/thumbnails/pokedex.jpg";
+import thumbnailSharkie from "../../../assets/thumbnails/sharkie.jpg";
+import thumbnailStreakon from "../../../assets/thumbnails/streakon.jpg";
 
 import type { ProjectPreview } from "../../types";
 
 export default [
   {
-    title: "StreakOn",
-    slug: "streakon",
+    title: "Cotix360",
+    slug: "cotix360",
     thumbnail: thumbnailStreakon,
-    description: "Social habit tracking app",
+    description: "App Cotizaciones",
   },
   {
-    title: "CubeWar",
-    slug: "cubewar",
+    title: "Xintra",
+    slug: "xintra",
     thumbnail: thumbnailCubeWar,
-    description: "Multiplayer strategy game",
+    description: "TicketWeb-App",
   },
   {
-    title: "Quibbo",
-    slug: "quibbo",
+    title: "Elephpant",
+    slug: "elephpant",
     thumbnail: thumbnailQuibbo,
-    description: "Multiplayer gaming platform",
+    description: "Multiplayer-Gaming-Plattform",
   },
   {
-    title: "Sharkie",
-    slug: "sharkie",
+    title: "MotherDay",
+    slug: "motherday",
     thumbnail: thumbnailSharkie,
-    description: "2D adventure game",
+    description: "Interactive Landingpage",
   },
   /**  {
     title: "WebGL Particles",
@@ -39,8 +39,8 @@ export default [
     description: "Dynamic 3D particles",
   }, */
   {
-    title: "Pokédex",
-    slug: "pokedex",
+    title: "KinderVianney",
+    slug: "kindervianney",
     thumbnail: thumbnailPokedex,
     description: "Open-source learning project",
   },
