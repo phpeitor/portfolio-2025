@@ -1,28 +1,27 @@
 import videoPokedex from "../../../assets/videos/pokedex.mp4";
 
-import pokedex0 from "../../../assets/images/projects/pokedex/pokedex-0.webp";
-import pokedex1 from "../../../assets/images/projects/pokedex/pokedex-1.webp";
-import pokedex2 from "../../../assets/images/projects/pokedex/pokedex-2.webp";
-import pokedex3 from "../../../assets/images/projects/pokedex/pokedex-3.webp";
+import pokedex0 from "../../../assets/images/projects/pokedex/pokedex-0.jpg";
+import pokedex1 from "../../../assets/images/projects/pokedex/pokedex-1.jpg";
+import pokedex2 from "../../../assets/images/projects/pokedex/pokedex-2.jpg";
 
 import type { ProjectContent } from "../../types";
 
 export default {
-  title: "Pokédex",
+  title: "Kinder",
   theme: "light",
-  tags: ["javascript", "html", "css"],
-  live: "https://pokedex.david-hckh.com/",
-  source: "https://github.com/davidhckh/pokedex",
+  tags: ["php", "javascript", "postgresql", "css"],
+  live: "https://institucioneducativavianney.com",
+  source: "https://github.com/phpeitor/kinder-vianney",
   videoBorder: true,
   description:
-    "Eines meiner ersten Webprojekte, um Kernkonzepte der Webentwicklung zu üben. Der Pokédex ist Open Source, damit andere Entwickler auf dieselbe Weise lernen können wie ich.<br/><br/>Er interagiert außerdem mit einer öffentlichen API, um zusätzliche Erfahrung zu sammeln.",
+    "Sitio web institucional para I.E.P San Juan Maria Vianney con portada responsive, slider visual, secciones informativas, portafolio, datos de contacto y formulario de Libro de Reclamaciones, desarrollado con Filament, PHP, CSS y JavaScript para una experiencia interactiva y atractiva.",
   components: [
     {
       type: "media",
       props: {
         type: "video",
         src: videoPokedex,
-        caption: "Pokédex Anwendung",
+        caption: "Kinder Demo",
       },
     },
     {
@@ -30,8 +29,8 @@ export default {
       props: {
         type: "image",
         src: pokedex0,
-        alt: "Standardansicht",
-        caption: "Standardansicht",
+        alt: "Standard View",
+        caption: "Standard View",
       },
     },
     {
@@ -39,8 +38,8 @@ export default {
       props: {
         type: "image",
         src: pokedex1,
-        alt: "Suchfunktion",
-        caption: "Suchfunktion",
+        alt: "Search Functionality",
+        caption: "Search Functionality",
       },
     },
     {
@@ -50,15 +49,6 @@ export default {
         src: pokedex2,
         alt: "Responsives Design",
         caption: "Responsives Design",
-      },
-    },
-    {
-      type: "media",
-      props: {
-        type: "image",
-        src: pokedex3,
-        alt: "Lazy-Loading",
-        caption: "Lazy-Loading",
       },
     },
   ],
