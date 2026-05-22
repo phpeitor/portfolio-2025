@@ -9,8 +9,11 @@ export type TagVariant =
   | "javascript"
   | "node"
   | "next"
+  | "php"
+  | "laravel"
   | "kubernetes"
   | "postgresql"
+  | "mysql"
   | "ogl"
   | "glsl";
 
@@ -25,8 +28,11 @@ export const tagLabels = {
   javascript: "JavaScript",
   node: "Node.js",
   next: "Next.js",
+  php: "PHP",
+  laravel: "Laravel",
   kubernetes: "Kubernetes",
   postgresql: "PostgreSQL",
+  mysql: "MySQL",
   ogl: "OGL.js",
   glsl: "GLSL",
 } as const satisfies Record<TagVariant, string>;

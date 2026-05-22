@@ -42,8 +42,18 @@ const classes = computed(() => ["tag", `tag-variant-${props.variant}`]);
       color: white;
     }
 
+    &-php {
+      background-color: #040e7b;
+      color: white;
+    }
+
     &-redis {
       background-color: #ce4036;
+      color: white;
+    }
+
+    &-laravel {
+      background-color: #b41308;
       color: white;
     }
 
@@ -77,7 +87,7 @@ const classes = computed(() => ["tag", `tag-variant-${props.variant}`]);
       color: white;
     }
 
-    &-postgresql {
+    &-postgresql, &-mysql {
       background-color: #2f6c92;
       color: white;
     }

@@ -1,28 +1,26 @@
 import videoQuibbo from "../../../assets/videos/quibbo.mp4";
 
-import quibbo0 from "../../../assets/images/projects/quibbo/quibbo-0.webp";
-import quibbo1 from "../../../assets/images/projects/quibbo/quibbo-1.webp";
-import quibbo2 from "../../../assets/images/projects/quibbo/quibbo-2.webp";
-import quibbo3 from "../../../assets/images/projects/quibbo/quibbo-3.webp";
-import quibbo4 from "../../../assets/images/projects/quibbo/quibbo-4.webp";
-import quibbo5 from "../../../assets/images/projects/quibbo/quibbo-5.webp";
+import quibbo0 from "../../../assets/images/projects/quibbo/quibbo-0.jpg";
+import quibbo1 from "../../../assets/images/projects/quibbo/quibbo-1.jpg";
+import quibbo2 from "../../../assets/images/projects/quibbo/quibbo-2.jpg";
+import quibbo3 from "../../../assets/images/projects/quibbo/quibbo-3.jpg";
 
 import type { ProjectContent } from "../../types";
 
 export default {
-  title: "Quibbo",
+  title: "Elephpant",
   theme: "light",
-  tags: ["three", "node", "kubernetes", "redis", "postgresql"],
+  tags: ["three", "php", "kubernetes", "redis", "postgresql"],
   videoBorder: true,
   description:
-    "Quibbo is a platform for fast, round-based multiplayer games. It brings together matchmaking, customizable 3D avatars, and account integration with ranked rewards.<br/><br/>The project started as a technical experiment and grew into a scalable system for testing new game ideas.",
+    "A Flappy Bird-style game built on PHP-GLFW. It supports real-time multiplayer matches using WebSockets and Redis for session and data management. The project is deployed on a Kubernetes cluster, showing that PHP can power modern, scalable applications.",
   components: [
     {
       type: "media",
       props: {
         type: "video",
         src: videoQuibbo,
-        caption: "User Experience",
+        caption: "Gameplay",
       },
     },
     {
@@ -59,24 +57,6 @@ export default {
         src: quibbo3,
         alt: "Avatar Variations",
         caption: "Avatar Variations",
-      },
-    },
-    {
-      type: "media",
-      props: {
-        type: "image",
-        src: quibbo4,
-        alt: "Responsive Design",
-        caption: "Responsive Design",
-      },
-    },
-    {
-      type: "media",
-      props: {
-        type: "image",
-        src: quibbo5,
-        alt: "Dark Mode",
-        caption: "Dark Mode",
       },
     },
   ],

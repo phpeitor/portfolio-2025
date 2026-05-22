@@ -1,26 +1,26 @@
-import streakon0 from "../../../assets/images/projects/streakon/streakon-0.webp";
-import streakon1 from "../../../assets/images/projects/streakon/streakon-1.webp";
-import streakon2 from "../../../assets/images/projects/streakon/streakon-2.webp";
-import streakon3 from "../../../assets/images/projects/streakon/streakon-3.webp";
+import streakon0 from "../../../assets/images/projects/streakon/streakon-0.jpg";
+import streakon1 from "../../../assets/images/projects/streakon/streakon-1.jpg";
+import streakon2 from "../../../assets/images/projects/streakon/streakon-2.jpg";
+import streakon3 from "../../../assets/images/projects/streakon/streakon-3.jpg";
 
 import type { ProjectContent } from "../../types";
 
 export default {
-  title: "StreakOn",
+  title: "Cotix360",
   theme: "dark",
-  tags: ["next", "node", "postgresql", "redis"],
+  tags: ["next", "node", "mysql"],
   videoBorder: false,
-  live: "https://www.streakon.app",
+  live: "https://mgindusol.com",
   description:
-    "StreakOn unterstützt kleine Gruppen dabei, durch gemeinsame Streaks und einfache Check-ins bei täglichen Gewohnheiten dranzubleiben.<br/><br/>Die App wurde mit Fokus auf geringe Interaktionshürden, mobile Nutzung und leichte soziale Funktionen entwickelt – mit Next.js, Node.js, PostgreSQL und Redis.",
+    "Aplicación web para gestión de usuarios, carga de ítems y generación de cotizaciones con cálculo automático de costos, flete, gastos, interés, factor y precios finales.",
   components: [
     {
       type: "media",
       props: {
         type: "image",
         src: streakon0,
-        alt: "Solo- und Gruppen-Streaks",
-        caption: "Solo- und Gruppen-Streaks",
+        alt: "Login Animado Recaptcha",
+        caption: "Login Animado Recaptcha",
       },
     },
     {
@@ -28,8 +28,8 @@ export default {
       props: {
         type: "image",
         src: streakon1,
-        alt: "Streak-Fortschritt",
-        caption: "Streak-Fortschritt",
+        alt: "Usuarios, Roles y Permisos",
+        caption: "Usuarios, Roles y Permisos",
       },
     },
     {
@@ -37,8 +37,8 @@ export default {
       props: {
         type: "image",
         src: streakon2,
-        alt: "Freunde anfeuern",
-        caption: "Freunde anfeuern",
+        alt: "Gestión de Ítems y Cotizaciones",
+        caption: "Gestión de Ítems y Cotizaciones",
       },
     },
     {
@@ -46,8 +46,8 @@ export default {
       props: {
         type: "image",
         src: streakon3,
-        alt: "Einladungs-Flow",
-        caption: "Einladungs-Flow",
+        alt: "Generación de Reportes",
+        caption: "Generación de Reportes",
       },
     },
   ],
