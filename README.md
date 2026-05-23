@@ -1,4 +1,4 @@
-# Portfolio Vue
+# Portfolio Vue 🆚
 
 [![forthebadge](https://forthebadge.com/badges/made-with-vue.svg)](https://forthebadge.com)
 [![forthebadge](https://forthebadge.com/badges/built-with-love.svg)](https://www.linkedin.com/in/drphp/)
@@ -69,7 +69,7 @@ La configuración está en `vite.config.ts`:
 | `src/assets/` | Modelos, texturas, estilos, sonidos, videos e imágenes |
 | `capturas/` | Capturas manuales usadas para revisión visual |
 
-## Recursos 3D y Assets
+## Recursos 3D & Assets
 
 Todos los recursos cargados por la experiencia WebGL se registran en `src/sources.ts`.
 
@@ -112,7 +112,7 @@ Los puntos de cámara para landscape/portrait están en `src/animations/waypoint
 - `src/three/objects/lab/`: escena holográfica/laboratorio.
 - `src/three/objects/contact/`: escena de contacto.
 
-## Flujo Para Cambiar Modelos GLB
+## Flujo Modelos GLB
 
 1. Agregar el archivo en `src/assets/...`.
 2. Importarlo en `src/sources.ts`.
@@ -149,7 +149,7 @@ Vite inyecta automáticamente:
 
 Por eso los componentes pueden usar mixins compartidos sin importar el archivo manualmente.
 
-## Verificación Antes de Entregar Cambios
+## Verificación de Cambios
 
 ```bash
 npm run typecheck
