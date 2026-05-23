@@ -1,5 +1,5 @@
 import { resources } from "../../../utils/resources";
-import { Mesh, Vector3, Euler, Group, ShaderMaterial, LinearSRGBColorSpace } from "three";
+import { Box3, Mesh, Vector3, Euler, Group, ShaderMaterial, LinearSRGBColorSpace, MeshBasicMaterial } from "three";
 import { scene } from "../../core/scene";
 import { animations } from "./animations";
 import { sceneWeights, sceneWeightsInOut } from "../../../animations/scenes";
@@ -18,6 +18,7 @@ import type { Material, Bone, Texture } from "three";
 
 let mesh: Mesh | null = null;
 let rightHandBone: Bone | null = null;
+let phpLogo: Group | null = null;
 
 const tIdleIntensity = { value: 0 };
 
@@ -27,6 +28,7 @@ const transform = new Group();
 const uniforms = { uProgress: { value: 0 }, uAmbientStrength: { value: 0 } };
 const contactPosition = new Vector3(0, -13, 0);
 const contactRotation = new Euler(0, -Math.PI, 0);
+const phpLogoMaterial = new MeshBasicMaterial({ color: 0x1f88ff });
 
 const init = () => {
   setupMesh();
@@ -120,6 +122,8 @@ const setupMesh = () => {
     mesh.remove(brain);
   }
 
+  attachPhpLogo();
+
   mesh.rotation.z = 0;
 
   transform.add(mesh);
@@ -127,6 +131,61 @@ const setupMesh = () => {
   rightHandBone = mesh.getObjectByName("bone-right-hand") as Bone;
 
   scene.instance.add(transform);
+};
+
+const attachPhpLogo = () => {
+  if (!mesh || phpLogo) return;
+
+  const resource = resources.items["php-logo-model"];
+  if (!resource) return;
+
+  const frontLogo = new Group();
+  const logoScene = resource.scene.clone(true) as Group;
+  frontLogo.name = "php-logo-front";
+
+  const avatarBox = new Box3().setFromObject(mesh);
+  const avatarSize = new Vector3();
+  avatarBox.getSize(avatarSize);
+
+  logoScene.updateMatrixWorld(true);
+  const logoBox = new Box3().setFromObject(logoScene);
+  const logoSize = new Vector3();
+  const logoCenter = new Vector3();
+  logoBox.getSize(logoSize);
+  logoBox.getCenter(logoCenter);
+  logoScene.position.sub(logoCenter);
+  frontLogo.add(logoScene);
+
+  const chestWidth = avatarSize.x * 0.22;
+  const chestHeight = avatarSize.y * 0.10;
+  const scale = Math.min(chestWidth / Math.max(logoSize.x, 0.0001), chestHeight / Math.max(logoSize.y, 0.0001)) * 1.35;
+
+  const styleLogo = (object: Group) => {
+    object.traverse((child) => {
+      if (!(child instanceof Mesh)) return;
+
+      child.frustumCulled = false;
+      child.renderOrder = 40;
+      child.material = phpLogoMaterial;
+
+      const material = child.material as any;
+      if (material) {
+        material.transparent = true;
+        material.depthTest = false;
+        material.depthWrite = false;
+        material.side = 2;
+      }
+    });
+  };
+
+  styleLogo(frontLogo);
+
+  frontLogo.scale.setScalar(scale);
+
+  frontLogo.rotation.set(0, 0, 0);
+
+  scene.instance.add(frontLogo);
+  phpLogo = frontLogo;
 };
 
 const tick = () => {
@@ -140,11 +199,13 @@ const tick = () => {
     uniforms.uProgress.value = 0;
     uniforms.uAmbientStrength.value = 0;
     transform.visible = true;
+    updatePhpLogo();
     return;
   }
 
   transform.position.copy(waypointsPosition);
   transform.rotation.copy(waypointsRotation);
+  updatePhpLogo();
 
   //uniforms.uProgress.value = sceneWeightsInOut.about.in * 1.1 - 0.1;
   uniforms.uProgress.value = aboutProgress.value * 1.1 - 0.1;
@@ -158,11 +219,37 @@ const tick = () => {
   }
 };
 
+const updatePhpLogo = () => {
+  if (!mesh || !phpLogo) return;
+
+  const showLogo = sceneWeights.about > 0.15 && sceneWeights.contact < 0.001;
+  phpLogo.visible = showLogo;
+  if (!showLogo) return;
+
+  transform.updateMatrixWorld(true);
+  mesh.updateMatrixWorld(true);
+
+  const avatarBox = new Box3().setFromObject(mesh);
+  const avatarSize = new Vector3();
+  const logoPosition = new Vector3();
+  avatarBox.getSize(avatarSize);
+  avatarBox.getCenter(logoPosition);
+
+  logoPosition.x += avatarSize.x * 0.03;
+  logoPosition.y = avatarBox.max.y + avatarSize.y * 0.35;
+  logoPosition.z = avatarBox.max.z + avatarSize.z * 0.12;
+
+  phpLogo.position.copy(logoPosition);
+  phpLogo.rotation.set(Math.PI / 2, 0, 0);
+};
+
 const destroy = () => {
   //mesh = null;
   //transform.clear();
   face.destroy();
   gsap.ticker.remove(tick);
+
+  phpLogo = null;
 };
 
 export const avatar = {
