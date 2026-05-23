@@ -235,7 +235,7 @@ const updatePhpLogo = () => {
   avatarBox.getSize(avatarSize);
   avatarBox.getCenter(logoPosition);
 
-  logoPosition.x += avatarSize.x * 0.03;
+  logoPosition.x += avatarSize.x * 0.12;
   logoPosition.y = avatarBox.max.y + avatarSize.y * 0.35;
   logoPosition.z = avatarBox.max.z + avatarSize.z * 0.12;
 
